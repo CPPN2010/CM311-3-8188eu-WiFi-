@@ -1,0 +1,13 @@
+# init.wifi_auto.rc - Auto load 8188eu WiFi driver on boot
+# Place this file in /vendor/etc/init/
+# It will be scanned by Android init on every boot
+
+service wifi_auto_load /system/bin/sh /data/local/tmp/wifi_auto_load.sh
+    class late_start
+    user root
+    group root
+    disabled
+    oneshot
+
+on property:sys.boot_completed=1
+    start wifi_auto_load
